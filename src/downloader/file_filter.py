@@ -93,6 +93,10 @@ class FileFilter:
 
         keep_folders = set()
 
+        for file_path in summary.files:
+            for parent in Path(file_path).parents:
+                keep_folders.add(str(parent))
+
         for folder_path in reversed(sorted(summary.folders.keys(), key=len)):
             if folder_path in keep_folders:
                 continue
